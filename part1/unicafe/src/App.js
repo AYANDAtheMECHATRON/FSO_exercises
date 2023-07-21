@@ -36,37 +36,48 @@ const App = () => {
     positiveAvg = (good/total)
     average = (good-updatedBad)/total
   }
-  console.log('tot', total)
+  const stats =[good, neutral,bad]
+
   return(
   <div>
     <div>
-    <button onClick={handleGood}>good</button>
-    <button onClick={handleNeutral}>neutral</button>
-    <button onClick={handleBad}>bad</button>
+    <Button handle={handleGood} text='good'/>
+    <Button handle={handleNeutral} text='neutral'/>
+    <Button handle={handleBad} text='bad'/>
     </div>
-    <h3>statistics</h3>
-    <Statistics text = 'good' value = {good}/>
-    <Statistics text ='neutral' value = {neutral}/>
-    <Statistics text ='bad' value = {bad}/>
-    <Statistics text ='all' value = {total}/>
-    <Statistics text ='average' value = {average}/>
-    <Statistics text ='positive' value = {positiveAvg*100}/>
+    <h3>statistics</h3>  
+    <Statistics  value= {stats}/>
 
-    
  </div>
   )
 }
 
-const Statistics = ({text,value}) =>{
-if(total === 0 && average === 0 && positiveAvg ===0){
-   return(
-    <h3>give feedback</h3>
-   )
+const Button = ({handle, text})=>{
+  return(
+    <button onClick={handle}>{text}</button>
+  )
 }
+
+
+const Statistics = ({value}) =>{
+
   return(
     <div>
-      <p>{text} {value}</p>
+      <StatisticLine text ={'good'} value ={value[0]}/>
+      <StatisticLine text ={'neutral'} value ={value[1]}/>
+      <StatisticLine text ={'bad'} value ={value[3]}/>
+      <StatisticLine text ={"all"} value ={total}/>
+      <StatisticLine text ={'average'} value ={average}/>
+      <StatisticLine text ={'positive'} value ={positiveAvg*100}/>
     </div>
+  
+  )
+}
+const StatisticLine =({text,value})=>{
+  return(
+    <div>
+    <p>{text} {value}</p>
+  </div>
   )
 }
 
