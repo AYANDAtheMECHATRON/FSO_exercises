@@ -37,7 +37,7 @@ const App = () => {
     average = (good-updatedBad)/total
   }
   const stats =[good, neutral,bad]
-
+  console.log('bad', bad)
   return(
   <div>
     <div>
@@ -65,7 +65,7 @@ const Statistics = ({value}) =>{
     <div>
       <StatisticLine text ={'good'} value ={value[0]}/>
       <StatisticLine text ={'neutral'} value ={value[1]}/>
-      <StatisticLine text ={'bad'} value ={value[3]}/>
+      <StatisticLine text ={'bad'} value ={value[2]}/>
       <StatisticLine text ={"all"} value ={total}/>
       <StatisticLine text ={'average'} value ={average}/>
       <StatisticLine text ={'positive'} value ={positiveAvg*100}/>
@@ -76,7 +76,14 @@ const Statistics = ({value}) =>{
 const StatisticLine =({text,value})=>{
   return(
     <div>
-    <p>{text} {value}</p>
+      <table>
+        <tbody>
+        <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+        </tr>
+        </tbody>
+     </table>
   </div>
   )
 }
